@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BTC पेपर एजेंट</title>
+<style>
+:root{--bg:#fff;--fg:#111;--mut:#666;--card:#f3f4f6;--g:#0a7d33;--r:#c0262d}
+@media(prefers-color-scheme:dark){:root{--bg:#111;--fg:#eee;--mut:#999;--card:#1e1e1e;--g:#3ddc84;--r:#ff6b6b}}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--fg);padding:16px;max-width:560px;margin:auto}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}.c{background:var(--card);padding:12px;border-radius:10px}
+.c b{display:block;font-size:20px}.c span{color:var(--mut);font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}td,th{padding:6px 4px;text-align:left;border-bottom:1px solid var(--card)}
+.w{overflow-x:auto}.p{color:var(--g)}.n{color:var(--r)}
+</style></head><body>
+<h2>🤖 BTC पेपर एजेंट</h2><p id="st">लोड हो रहा है…</p>
+<div class="g" id="g"></div>
+<h3>आख़िरी ट्रेड</h3><div class="w"><table id="t"></table></div>
+<h3>सेशन रिपोर्ट (एजेंट की सीख)</h3><div class="w"><table id="r"></table></div>
+<script>
+const f=(u)=>fetch(u+"?v="+Date.now()).then(r=>{if(!r.ok)throw 0;return r.text()});
+(async()=>{try{
+const s=JSON.parse(await f("state.json")),k=s.start_balance,inr=s.balance/k*100000,n=s.wins+s.losses;
+const status=s.pos?"📈 पोज़िशन खुली: "+s.pos.side:s.pause_until&&s.day<=s.pause_until?"🛑 ब्रेक "+s.pause_until+" तक (सिर्फ़ मार्केट पढ़ाई)":s.day_closed?"⛔ आज का दिन बंद":"👀 सेटअप का इंतज़ार | आज "+s.trades_today+" ट्रेड";
+document.getElementById("st").textContent=status+" | आख़िरी कैंडल: "+(s.last_t?new Date(s.last_t).toLocaleString("hi-IN"):"-");
+const card=(a,b)=>`<div class="c"><b>${a}</b><span>${b}</span></div>`;
+document.getElementById("g").innerHTML=card("₹"+Math.round(inr).toLocaleString("en-IN"),"बैलेंस")+card((inr/1000-100).toFixed(1)+"%","रिटर्न")+card(n?(s.wins/n*100).toFixed(1)+"%":"-","विन रेट ("+n+" ट्रेड)")+card(s.max_dd.toFixed(1)+"%","मैक्स ड्रॉडाउन");
+try{const rows=(await f("trades.csv")).trim().split(/\r?\n/).slice(1).reverse().slice(0,10);
+document.getElementById("t").innerHTML="<tr><th>समय</th><th>साइड</th><th>वजह</th><th>P/L ₹</th></tr>"+rows.map(r=>{const c=r.split(",");return`<tr><td>${c[0]}</td><td>${c[1]}</td><td>${c[6]}</td><td class="${+c[9]>=0?"p":"n"}">${c[9]}</td></tr>`}).join("")}catch(e){}
+try{const K=JSON.parse(await f("knowledge.json"));
+const S=[["एशिया 00-08",0,8],["यूरोप 08-16",8,16],["अमेरिका 16-24",16,24]];
+document.getElementById("r").innerHTML="<tr><th>सेशन (UTC)</th><th>रेंज</th><th>ट्रेड</th><th>विन</th><th>P/L ₹</th></tr>"+S.map(([m,a,b])=>{let c=0,r=0,t=0,w=0,p=0;for(let h=a;h<b;h++){const d=K.hours[h],x=K.trade_hours[h];if(d){c+=d.n;r+=d.rng}if(x){t+=x.n;w+=x.w;p+=x.pnl}}
+return`<tr><td>${m}</td><td>${c?(r/c).toFixed(3)+"%":"-"}</td><td>${t}</td><td>${t?Math.round(w/t*100)+"%":"-"}</td><td>${Math.round(p*100000/k)}</td></tr>`}).join("")}catch(e){}
+}catch(e){document.getElementById("st").textContent="अभी डेटा नहीं है। Actions में पहला रन पूरा होने दें।"}})();
+</script></body></html>
