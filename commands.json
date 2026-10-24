@@ -1,0 +1,13 @@
+{
+  "max_trades_per_day": 3,
+  "max_consec_losses": 3,
+  "pause_days": 5,
+  "sl_closes_day": true,
+  "risk_pct": 1.5,
+  "max_risk_pct": 2.0,
+  "min_rr": 2.0,
+  "max_leverage": 3.0,
+  "or_minutes": 30,
+  "min_range_pct": 0.2,
+  "max_range_pct": 3.0
+}
