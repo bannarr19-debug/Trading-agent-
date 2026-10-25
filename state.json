@@ -12,14 +12,14 @@
  "day_closed": false,
  "day_pnl": 0.0,
  "pos": null,
- "or_high": 80771.21,
- "or_low": 80633.58,
+ "or_high": 80774.0,
+ "or_low": 80614.11,
  "armed": true,
- "last_t": 1792886400000,
- "last_close": 80709.84,
+ "last_t": 1792902900000,
+ "last_close": 80823.01,
  "block_noted": false,
  "d_o": 80769.67,
- "d_h": 80771.21,
- "d_l": 80633.58,
- "d_v": 12.6831173
+ "d_h": 80925.0,
+ "d_l": 80614.11,
+ "d_v": 433.09105621
 }
