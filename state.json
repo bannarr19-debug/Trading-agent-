@@ -14,12 +14,12 @@
  "pos": null,
  "or_high": 78083.81,
  "or_low": 76667.0,
- "armed": false,
- "last_t": 1793342400000,
- "last_close": 78372.42,
+ "armed": true,
+ "last_t": 1793367300000,
+ "last_close": 77049.58,
  "block_noted": true,
  "d_o": 77782.75,
  "d_h": 78634.8,
  "d_l": 76301.02,
- "d_v": 5300.95585812
+ "d_v": 7904.060119569996
 }
