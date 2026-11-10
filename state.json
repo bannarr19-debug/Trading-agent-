@@ -13,13 +13,13 @@
  "day_pnl": 0.0,
  "pos": null,
  "or_high": 75340.23,
- "or_low": 75050.0,
- "armed": true,
- "last_t": 1794269700000,
- "last_close": 75050.0,
- "block_noted": false,
+ "or_low": 75008.67,
+ "armed": false,
+ "last_t": 1794295800000,
+ "last_close": 74778.89,
+ "block_noted": true,
  "d_o": 75257.77,
  "d_h": 75340.23,
- "d_l": 75050.0,
- "d_v": 61.635594299999994
+ "d_l": 74253.01,
+ "d_v": 1703.4172087700001
 }
