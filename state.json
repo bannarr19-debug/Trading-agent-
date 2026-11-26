@@ -8,18 +8,25 @@
  "consec_losses": 1,
  "pause_until": "2026-11-22",
  "day": "2026-11-26",
- "trades_today": 0,
+ "trades_today": 1,
  "day_closed": false,
  "day_pnl": 0.0,
- "pos": null,
+ "pos": {
+  "side": "SHORT",
+  "entry": 60026.532292,
+  "sl": 61526.89,
+  "tp": 57025.81687600001,
+  "qty": 0.010498095379595757,
+  "t": 1795705500000
+ },
  "or_high": 61526.89,
  "or_low": 60295.31,
- "armed": true,
- "last_t": 1795670100000,
- "last_close": 60868.87,
+ "armed": false,
+ "last_t": 1795707000000,
+ "last_close": 60309.74,
  "block_noted": false,
  "d_o": 60383.5,
  "d_h": 61526.89,
- "d_l": 60295.31,
- "d_v": 2098.51676202
+ "d_l": 59842.43,
+ "d_v": 4460.994878839996
 }
